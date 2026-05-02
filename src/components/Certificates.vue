@@ -152,7 +152,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const certRef = ref(null);
 const selectedCert = ref(null);
-const zoomLevel = ref(1); // State awal zoom
+const zoomLevel = ref(1);
+
+// Helper untuk path gambar sertifikat
+const cert = (path) => new URL(`../assets/certificates/${path}`, import.meta.url).href
 
 // Zoom Logic
 const zoomIn = () => {
@@ -173,7 +176,7 @@ const certificates = [
     issuer: "Coursera",
     date: "January 2026",
     icon: "📊",
-    images: ["src/assets/certificates/BA.png"],
+    images: [cert('BA.png')],
   },
   {
     title: "Desktop BYOD Support Supervisor",
@@ -181,8 +184,8 @@ const certificates = [
     date: "September 2025",
     icon: "🛡️",
     images: [
-      "src/assets/certificates/BNSP1.png", 
-      "src/assets/certificates/BNSP2.png"
+      cert('BNSP1.png'),
+      cert('BNSP2.png')
     ],
   },
   {
@@ -190,27 +193,27 @@ const certificates = [
     issuer: "Google, Tokopedia, Gojek, & Traveloka",
     date: "June 2024",
     icon: "☁️",
-    images: ["src/assets/certificates/bangkit .jpg"],
+    images: [cert('bangkit .jpg')],
   },
   {
     title: "ADempiere FOR Intermediate",
     issuer: "Lepkom Gunadarma",
     date: "February 2024",
     icon: "⚙️",
-    images: ["src/assets/certificates/AD1.jpg", "src/assets/certificates/AD.jpg"]
+    images: [cert('AD1.jpg'), cert('AD.jpg')]
   },
   {
     title: "Manajemen Layanan IT",
     issuer: "Universitas Gunadarma",
-    date: "Sepetember 2024",
+    date: "September 2024",
     icon: "⚙️",
-    images: ["src/assets/certificates/MLTI1.jpg", "src/assets/certificates/MLTI2.jpg"],
+    images: [cert('MLTI1.jpg'), cert('MLTI2.jpg')],
   },
 ];
 
 const openModal = (cert) => {
   selectedCert.value = cert;
-  zoomLevel.value = 1; // Reset zoom setiap kali buka modal baru
+  zoomLevel.value = 1;
   document.body.style.overflow = 'hidden';
 };
 
@@ -282,7 +285,6 @@ onMounted(() => {
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Menghilangkan scrollbar pada area zoom agar tetap estetik */
 .overflow-auto::-webkit-scrollbar {
   width: 4px;
   height: 4px;
